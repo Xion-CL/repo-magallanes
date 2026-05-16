@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Repositorio Magallanes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Google Maps API -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-seedling me-2"></i>Repositorio Magallanes
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showSection('inicio')">
+                            <i class="fas fa-home me-1"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('productos')">
+                            <i class="fas fa-carrot me-1"></i>Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('mapa')">
+                            <i class="fas fa-map-marked-alt me-1"></i>Mapa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('bancos')">
+                            <i class="fas fa-warehouse me-1"></i>Bancos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('distribuidoras')">
+                            <i class="fas fa-truck me-1"></i>Distribuidoras
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>Juan Vásquez
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- SECCIÓN INICIO -->
+        <section id="inicio" class="content-section active">
+            <div class="container-fluid mt-5 pt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title animate-fade-in">
+                            <i class="fas fa-chart-line me-2"></i>Panel de Control
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Estadísticas -->
+                <div class="row g-4 mb-4">
+                    <div class="col-6 col-lg-3">
+                        <div class="stat-card animate-slide-up">
+                            <div class="stat-icon bg-success">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">128</h3>
+                                <p class="stat-label">kg Disponibles Hoy</p>
+                                <small class="text-muted"><i class="fas fa-arrow-up text-success"></i> 12% vs ayer</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="stat-card animate-slide-up" style="animation-delay: 0.1s">
+                            <div class="stat-icon bg-primary">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">8</h3>
+                                <p class="stat-label">Solicitudes Activas</p>
+                                <small class="text-muted">3 nuevas hoy</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="stat-card animate-slide-up" style="animation-delay: 0.2s">
+                            <div class="stat-icon bg-warning">
+                                <i class="fas fa-truck-loading"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">5</h3>
+                                <p class="stat-label">En Distribución</p>
+                                <small class="text-muted">ETA: 2-4 horas</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="stat-card animate-slide-up" style="animation-delay: 0.3s">
+                            <div class="stat-icon bg-info">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">92%</h3>
+                                <p class="stat-label">Trazabilidad</p>
+                                <small class="text-muted">Registro completo</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos y Actividad Reciente -->
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm animate-fade-in">
+                            <div class="card-header bg-white border-0 pt-3">
+                                <h5 class="fw-bold mb-0"><i class="fas fa-chart-pie me-2 text-success"></i>Distribución por Categoría</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="categoryChart" height="120"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm animate-fade-in">
+                            <div class="card-header bg-white border-0 pt-3">
+                                <h5 class="fw-bold mb-0"><i class="fas fa-bell me-2 text-warning"></i>Actividad Reciente</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-list">
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-success">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Nueva cosecha registrada</p>
+                                            <small class="text-muted">Invernadero Las Vertientes - 30 kg lechuga</small>
+                                            <small class="text-muted d-block">Hace 15 min</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-primary">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Entrega completada</p>
+                                            <small class="text-muted">Banco de Alimentos Natales - 20 kg</small>
+                                            <small class="text-muted d-block">Hace 1 hora</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Producto próximo a vencer</p>
+                                            <small class="text-muted">Espinaca - Vence en 2 días</small>
+                                            <small class="text-muted d-block">Hace 2 horas</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PRODUCTOS -->
+        <section id="productos" class="content-section">
+            <div class="container-fluid mt-5 pt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title">
+                            <i class="fas fa-carrot me-2"></i>Catálogo de Productos
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Buscar producto..." id="searchProduct">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="filterCategory">
+                                            <option value="">Todas las categorías</option>
+                                            <option value="hoja">Hortalizas de hoja</option>
+                                            <option value="fruto">Hortalizas de fruto</option>
+                                            <option value="raiz">Raíces y tubérculos</option>
+                                            <option value="fruta">Frutas</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="filterStatus">
+                                            <option value="">Todos los estados</option>
+                                            <option value="disponible">Disponible</option>
+                                            <option value="reservado">Reservado</option>
+                                            <option value="venciendo">Próximo a vencer</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success w-100" onclick="filterProducts()">
+                                            <i class="fas fa-filter me-1"></i>Filtrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Productos -->
+                <div class="row g-4" id="productsGrid">
+                    <!-- Producto 1 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="hoja" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="data:image/jpeg;base64,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" alt="Lechuga">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Lechuga Crespa</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Invernadero Sol Austral</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">15 kg</span>
+                                    <span class="badge bg-light text-dark">Hortaliza de hoja</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Lechuga Crespa')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 15 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="raiz" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?w=400" alt="Zanahoria">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Zanahoria Fresca</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Quinta Los Andes</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">24 kg</span>
+                                    <span class="badge bg-light text-dark">Raíz</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Zanahoria Fresca')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 14 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="raiz" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://images.cookforyourlife.org/wp-content/uploads/2018/09/Patatas.jpg" alt="Papa">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Papa Chilota</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Huerto Punta Arenas</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">50 kg</span>
+                                    <span class="badge bg-light text-dark">Tubérculo</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Papa Chilota')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 10 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="hoja" data-status="venciendo">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://www.conasi.eu/blog/wp-content/uploads/2023/07/recetas-con-espinacas-d.jpg" alt="Espinaca">
+                                <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">Vence pronto</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Espinaca</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Invernadero Sur</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-warning">8 kg</span>
+                                    <span class="badge bg-light text-dark">Hortaliza de hoja</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-warning btn-sm" onclick="requestProduct('Espinaca')">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>Prioridad
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-danger"><i class="fas fa-clock me-1"></i>Vence: 19 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 5 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="fruto" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400" alt="Tomate">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Tomate Cherry</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Invernadero Las Vertientes</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">12 kg</span>
+                                    <span class="badge bg-light text-dark">Hortaliza de fruto</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Tomate Cherry')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 16 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 6 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="fruta" data-status="reservado">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400" alt="Manzana">
+                                <span class="badge bg-primary position-absolute top-0 end-0 m-2">Reservado</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Manzana Fuji</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Frutícola Magallanes</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-primary">30 kg</span>
+                                    <span class="badge bg-light text-dark">Fruta</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>
+                                        <i class="fas fa-lock me-1"></i>Reservado
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 12 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 7 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="hoja" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://freshmate.cl/cdn/shop/files/acelga_en_tabla_de_madera_4_11zon.webp?v=1724715342" alt="Acelga">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Acelga</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Huerto Familiar</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">10 kg</span>
+                                    <span class="badge bg-light text-dark">Hortaliza de hoja</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Acelga')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 16 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 8 -->
+                    <div class="col-6 col-md-4 col-lg-3 product-card" data-category="raiz" data-status="disponible">
+                        <div class="card product-card-inner h-100">
+                            <div class="product-image">
+                                <img src="https://ultrahuertos.com/wp-content/uploads/2020/04/remolacha.jpg" alt="Betarraga">
+                                <span class="badge bg-success position-absolute top-0 end-0 m-2">Disponible</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Betarraga</h5>
+                                <p class="card-text text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Quinta Los Andes</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold text-success">18 kg</span>
+                                    <span class="badge bg-light text-dark">Raíz</span>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="requestProduct('Betarraga')">
+                                        <i class="fas fa-shopping-cart me-1"></i>Solicitar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <small class="text-muted"><i class="fas fa-clock me-1"></i>Cosechado: 13 mayo 2024</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN MAPA -->
+        <section id="mapa" class="content-section">
+            <div class="container-fluid mt-5 pt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title">
+                            <i class="fas fa-map-marked-alt me-2"></i>Mapa de Distribución - Punta Arenas
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card shadow-sm">
+                            <div class="card-body p-0">
+                                <div id="map" style="height: 500px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="fw-bold mb-0"><i class="fas fa-info-circle me-2 text-primary"></i>Información de Rutas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="route-info mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="route-dot bg-success me-2"></div>
+                                        <span class="fw-bold">Rutas Activas</span>
+                                    </div>
+                                    <p class="text-muted mb-0">5 vehículos en circulación distribuyendo productos frescos</p>
+                                </div>
+                                <div class="route-info mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="route-dot bg-primary me-2"></div>
+                                        <span class="fw-bold">Bancos de Alimentos</span>
+                                    </div>
+                                    <p class="text-muted mb-0">8 puntos de distribución en la ciudad</p>
+                                </div>
+                                <div class="route-info">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="route-dot bg-warning me-2"></div>
+                                        <span class="fw-bold">Invernaderos</span>
+                                    </div>
+                                    <p class="text-muted mb-0">12 productores locales conectados</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-white">
+                                <h5 class="fw-bold mb-0"><i class="fas fa-truck me-2 text-warning"></i>En Tránsito</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="transit-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="fw-bold">Vehículo D-015</span>
+                                        <span class="badge bg-success">En ruta</span>
+                                    </div>
+                                    <small class="text-muted d-block"><i class="fas fa-map-marker-alt me-1"></i>Rumbo a: Banco Natales</small>
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>ETA: 30 min</small>
+                                    <div class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar bg-success" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="transit-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="fw-bold">Vehículo D-023</span>
+                                        <span class="badge bg-warning text-dark">Cargando</span>
+                                    </div>
+                                    <small class="text-muted d-block"><i class="fas fa-map-marker-alt me-1"></i>Invernadero Sol Austral</small>
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>ETA: 1 hora</small>
+                                    <div class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar bg-warning" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN BANCOS DE ALIMENTOS -->
+        <section id="bancos" class="content-section">
+            <div class="container-fluid mt-5 pt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title">
+                            <i class="fas fa-warehouse me-2"></i>Bancos de Alimentos - Punta Arenas
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Banco 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-success me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco de Alimentos Natales</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. España 1234, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">156</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">420 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">12</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Natales')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Natales')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-primary me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco Punta Arenas Centro</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Calle Bulnes 567, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">203</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">580 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">18</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Centro')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Centro')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-info me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco Alimentos Sur</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. Colón 890, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">98</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">310 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">8</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Sur')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Sur')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-warning me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco Alimentos Oriente</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. Portugal 445, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">134</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">450 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">15</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Oriente')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Oriente')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco 5 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-danger me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco Alimentos Norte</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. Chile 678, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">187</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">520 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">20</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Norte')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Norte')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco 6 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card foodbank-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="foodbank-icon bg-secondary me-3">
+                                        <i class="fas fa-warehouse"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Banco Alimentos Costa</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Costanera 123, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-4">
+                                        <h6 class="text-success mb-0">76</h6>
+                                        <small class="text-muted">Familias</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-primary mb-0">240 kg</h6>
+                                        <small class="text-muted">Distribuidos</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6 class="text-warning mb-0">6</h6>
+                                        <small class="text-muted">Voluntarios</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success btn-sm" onclick="viewFoodbank('Banco Costa')">
+                                        <i class="fas fa-eye me-1"></i>Ver Detalles
+                                    </button>
+                                    <button class="btn btn-success btn-sm" onclick="distributeTo('Banco Costa')">
+                                        <i class="fas fa-truck me-1"></i>Distribuir Ahora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DISTRIBUIDORAS -->
+        <section id="distribuidoras" class="content-section">
+            <div class="container-fluid mt-5 pt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h2 class="section-title">
+                            <i class="fas fa-truck me-2"></i>Distribuidoras - Punta Arenas
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Distribuidora 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-success me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Distribuidora Magallanes</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Zona Industrial, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">500 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">8</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">15</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Distribuidora Magallanes')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuidora 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-primary me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Transportes del Sur</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. Colón 1500, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">350 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">5</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">10</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Transportes del Sur')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuidora 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-warning me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Logística Austral</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Barrio Industrial, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">420 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">6</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">12</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Logística Austral')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuidora 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-info me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Express Patagonia</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Av. España 2100, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">280 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-info" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">4</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">8</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Express Patagonia')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuidora 5 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-danger me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Rápido Magallanes</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Zona Franca, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">600 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-danger" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">10</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">18</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Rápido Magallanes')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuidora 6 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card distributor-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <div class="distributor-icon bg-secondary me-3">
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1">Distribuidora Costa</h5>
+                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt me-1"></i>Costanera 456, Punta Arenas</p>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <small class="text-muted">Capacidad</small>
+                                        <small class="fw-bold">200 kg/día</small>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-secondary" style="width: 35%"></div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">3</h6>
+                                        <small class="text-muted">Vehículos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="mb-0">6</h6>
+                                        <small class="text-muted">Conductores</small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-success btn-sm" onclick="contactDistributor('Distribuidora Costa')">
+                                        <i class="fas fa-phone me-1"></i>Contactar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal para notificaciones -->
+    <div class="modal fade" id="notificationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Notificación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    Contenido del mensaje
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="modalConfirm">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
